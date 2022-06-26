@@ -20,7 +20,7 @@ namespace TheEighteenthModule
 
 
 
-        static void Metod1()
+        static async Task Metod1()
         {
 
             var task_name = Thread.CurrentThread;
@@ -35,12 +35,12 @@ namespace TheEighteenthModule
             {
                 Console.BackgroundColor = ConsoleColor.Green;
                 Console.WriteLine("1");
-                Thread.Sleep(100);
+                await Task.Delay(300);
             }
 
             Console.WriteLine($"Поток {task_name.Name} закончил работу, ID : {task_name.ManagedThreadId}");
         }
-        static void Metod2()
+        static async Task Metod2()
         {
 
             var task_name = Thread.CurrentThread;
@@ -55,13 +55,14 @@ namespace TheEighteenthModule
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.Write("2");
-                Thread.Sleep(200);
+                await Task.Delay(200);
+
             }
 
             Console.WriteLine($"Поток {task_name.Name} закончил работу, ID : {task_name.ManagedThreadId}");
         }
 
-        static bool Metod3()
+        static async Task Metod3()
         {
 
             var task_name = Thread.CurrentThread;
@@ -76,12 +77,11 @@ namespace TheEighteenthModule
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
                 Console.Write("3");
-                Thread.Sleep(300);
+                await Task.Delay(300);
             }
 
             Console.WriteLine($"Поток {task_name.Name} закончил работу, ID : {task_name.ManagedThreadId}");
 
-            return true;
         }
 
 
