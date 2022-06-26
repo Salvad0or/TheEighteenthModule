@@ -9,21 +9,13 @@ namespace TheEighteenthModule
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static  void Main(string[] args)
         {
+            Task.Factory.StartNew(Metod1);
+            Task.Factory.StartNew(Metod2);
+            Task.Factory.StartNew(Metod3);
 
-            Thread[] threads = 
-                { 
-                new Thread(Metod1),
-                new Thread(Metod2),
-                new Thread(Metod3),
-                new Thread(Metod4),
-                new Thread(Metod5),
-                
-            };
-
-            
-            
+            Console.ReadKey();                             
         }
 
 
@@ -36,17 +28,62 @@ namespace TheEighteenthModule
             task_name.Name = "Metod1";
 
             Random r = new Random();
-           
-            Console.WriteLine($"Поток {task_name.Name}, ID : {task_name.ManagedThreadId}");
 
-            for (int i = 0; i < 1000; i++)
+            Console.Write($"Поток {task_name.Name} начал работу, ID : {task_name.ManagedThreadId}");
+
+            for (int i = 0; i < 10; i++)
             {
-                Console.BackgroundColor = ConsoleColor.Red;  
-                Thread.Sleep(r.Next(1000,5000));
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.WriteLine("1");
+                Thread.Sleep(100);
             }
+
+            Console.WriteLine($"Поток {task_name.Name} закончил работу, ID : {task_name.ManagedThreadId}");
+        }
+        static void Metod2()
+        {
+
+            var task_name = Thread.CurrentThread;
+
+            task_name.Name = "Metod2";
+
+            Random r = new Random();
+
+            Console.WriteLine($"Поток {task_name.Name} начал работу, ID : {task_name.ManagedThreadId}");
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.Write("2");
+                Thread.Sleep(200);
+            }
+
+            Console.WriteLine($"Поток {task_name.Name} закончил работу, ID : {task_name.ManagedThreadId}");
         }
 
-        
+        static bool Metod3()
+        {
+
+            var task_name = Thread.CurrentThread;
+
+            task_name.Name = "Metod3";
+
+            Random r = new Random();
+
+            Console.WriteLine($"Поток {task_name.Name} начал работу, ID : {task_name.ManagedThreadId}");
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.Write("3");
+                Thread.Sleep(300);
+            }
+
+            Console.WriteLine($"Поток {task_name.Name} закончил работу, ID : {task_name.ManagedThreadId}");
+
+            return true;
+        }
+
 
     }
 }
